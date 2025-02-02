@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blitzer</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center;
+            align-items: center;
+            height: 450px; /* Increased height */
+            width: 450px;
+            border: 3px solid pink; /* Pink border */
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px; /* Slightly rounded corners */
+            padding: 20px;
+        }
+
+        video {
+            width: 200px; /* Increased size */
+            height: auto;
+            margin-bottom: 15px; /* Space between video and text */
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: pink; /* Pink background */
+            color: white;
+            font-size: 18px; /* Larger font */
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s; /* Smooth transition */
+        }
+
+        button:hover {
+            background-color: hotpink; /* Darker pink on hover */
+        }
+
+        /* Heartbeat Animation */
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Apply animation when button is clicked */
+        .heartbeat {
+            animation: heartbeat 1s infinite; /* 1 second heartbeat, infinite loop */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <video autoplay loop muted>
+            <source src="blitzer.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <h1>Hi ^^</h1>
+        <button id="startButton" onclick="startAnimation()">GET STARTED</button>
+    </div>
+
+    <script>
+        function startAnimation() {
+            var button = document.getElementById("startButton");
+            button.classList.add("heartbeat");  // Add heartbeat class to trigger animation
+
+            // Redirect after a slight delay to allow the animation to run
+            setTimeout(function() {
+                window.location.href = '1.html';
+            }, 1000); // Adjust delay if needed
+        }
+    </script>
+</body>
+</html>

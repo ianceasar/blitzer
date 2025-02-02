@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Place & Food</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 3px solid pink;
+            padding: 40px;
+            width: 80%;
+            max-width: 900px;
+            border-radius: 10px;
+            background: white;
+            text-align: center;
+        }
+
+        h1 {
+            color: pink;
+            margin-bottom: 20px;
+        }
+
+        .image-grid {
+            display: grid;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* 4-column layout for places */
+        #step1 .image-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        /* 6x2 layout for food choices */
+        #step2 .image-grid {
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(2, auto);
+        }
+
+        .image-card {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: 3px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .label {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 100%;
+            text-align: center;
+        }
+
+        .selected {
+            border: 3px solid pink;
+        }
+
+        .button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: pink;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background: #ff66b2;
+        }
+
+        .receipt {
+    display: none; /* Hide the receipt initially */
+    background: #fff;
+    border: 2px solid pink;  /* Changed to pink */
+    padding: 20px;
+    width: 300px;
+    text-align: center; /* Center the text */
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    margin: 20px auto; /* Centers the receipt */
+}
+
+
+
+.receipt h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.receipt p {
+    margin-bottom: 10px;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: space-between; /* Align the buttons side by side */
+    margin-top: 20px;
+}
+
+.button {
+    padding: 10px 15px;
+    background: pink;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background: #ff66b2;
+}
+
+button + button {
+    margin-left: 10px; /* Adds space between the buttons */
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Step 1: Choose a Place -->
+    <div class="container" id="step1">
+        <h1>WHERE DO YOU WANT TO GO?</h1>
+        <div class="image-grid">
+            <div class="image-card" onclick="choosePlace(this, 'Market')">
+                <img src="market.jpg" alt="Market">
+                <div class="label">Market</div>
+            </div>
+            <div class="image-card" onclick="choosePlace(this, 'Mall')">
+                <img src="mall.jpg" alt="Mall">
+                <div class="label">Mall</div>
+            </div>
+            <div class="image-card" onclick="choosePlace(this, 'Coffee Shop')">
+                <img src="coffee.jpg" alt="Coffee Shop">
+                <div class="label">Coffee Shop</div>
+            </div>
+            <div class="image-card" onclick="choosePlace(this, 'Beach')">
+                <img src="beach.jpg" alt="Beach">
+                <div class="label">Beach</div>
+            </div>
+        </div>
+        <button class="button" onclick="goToFood()">Next</button>
+        <p id="placeError" style="color: red; display: none;">Please select a place!</p>
+    </div>
+
+    <!-- Step 2: Choose Food -->
+    <div class="container" id="step2" style="display: none;">
+        <h1>WHAT FOOD DO YOU LIKE TO EAT?</h1>
+        <div class="image-grid">
+            <div class="image-card" onclick="chooseFood(this, 'Pizza')">
+                <img src="pizza.jpg" alt="Pizza">
+                <div class="label">Pizza</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Burger')">
+                <img src="burger.jpg" alt="Burger">
+                <div class="label">Burger</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Pasta')">
+                <img src="pasta.jpg" alt="Pasta">
+                <div class="label">Pasta</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Ice Cream')">
+                <img src="icecream.jpg" alt="Ice Cream">
+                <div class="label">Ice Cream</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Street Foods')">
+                <img src="streetfood.jpg" alt="Street Foods">
+                <div class="label">Street Foods</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Biryani')">
+                <img src="biryani.jpg" alt="Biryani">
+                <div class="label">Biryani</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Combo 1')">
+                <img src="combo1.jpg" alt="Combo 1">
+                <div class="label">Combo 1</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Milk Tea')">
+                <img src="milktea.jpg" alt="Milk Tea">
+                <div class="label">Milk Tea</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Donut')">
+                <img src="donut.jpg" alt="Donut">
+                <div class="label">Donut</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Sushi')">
+                <img src="sushi.jpg" alt="Sushi">
+                <div class="label">Sushi</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Jollibee')">
+                <img src="jollibee.jpg" alt="Jollibee">
+                <div class="label">Jollibee</div>
+            </div>
+            <div class="image-card" onclick="chooseFood(this, 'Ramen')">
+                <img src="ramen.jpg" alt="Ramen">
+                <div class="label">Ramen</div>
+            </div>
+        </div>
+        <button class="button" onclick="showReceipt()">Proceed</button>
+    </div>
+
+    <!-- Receipt -->
+    <div class="container receipt" id="receipt">
+        <h2>Receipt</h2>
+        <p>Ian and Bill Date</p>
+        <p><strong>Date:</strong> Feb 14, 2025</p>
+        <p><strong>Summary:</strong> O I I A O I</p>
+        <p id="chosenPlace"></p>
+        <p id="chosenFoods"></p>
+        <button class="button" onclick="downloadPDF()">Download PDF</button>
+        <button class="button" onclick="done()">Done</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        let selectedPlace = "";
+        let selectedFoods = [];
+
+        function choosePlace(element, place) {
+            document.querySelectorAll("#step1 .image-card").forEach(card => card.classList.remove("selected"));
+            element.classList.add("selected");
+            selectedPlace = place;
+            document.getElementById("placeError").style.display = "none";
+        }
+
+        function goToFood() {
+            if (!selectedPlace) {
+                document.getElementById("placeError").style.display = "block";
+                return;
+            }
+            document.getElementById("step1").style.display = "none";
+            document.getElementById("step2").style.display = "block";
+        }
+
+        function chooseFood(element, food) {
+            if (selectedFoods.includes(food)) {
+                selectedFoods = selectedFoods.filter(f => f !== food);
+                element.classList.remove("selected");
+            } else {
+                selectedFoods.push(food);
+                element.classList.add("selected");
+            }
+        }
+
+        function showReceipt() {
+            if (selectedFoods.length === 0) {
+                alert("Please select at least one food item.");
+                return;
+            }
+            document.getElementById("step2").style.display = "none";
+            document.getElementById("receipt").style.display = "block";
+            document.getElementById("chosenPlace").innerHTML = `<strong>Place:</strong> ${selectedPlace}`;
+            document.getElementById("chosenFoods").innerHTML = `<strong>Food Choices:</strong> ${selectedFoods.join(", ")}`;
+        }
+
+        function done() {
+    window.location.href = "2.html"; 
+}
+
+
+        // Function to download the receipt as a PDF
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Title
+            doc.setFontSize(18);
+            doc.text("Receipt", 105, 20, null, null, "center");
+
+            // Date and Summary
+            doc.setFontSize(12);
+            doc.text("Ian and Bill Date", 20, 40);
+            doc.text("Date: Feb 14, 2025", 20, 50);
+            doc.text("Summary: Your journey awaits at the selected place and food choices!", 20, 60);
+
+            // Add selected place and foods
+            doc.text(`Place: ${selectedPlace}`, 20, 70);
+            doc.text(`Food Choices: ${selectedFoods.join(", ")}`, 20, 80);
+
+            // Save the PDF
+            doc.save("receipt.pdf");
+        }
+    </script>
+
+</body>
+</html>

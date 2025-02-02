@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blitzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid pink;
+            padding: 60px;
+            border-radius: 10px;
+            width: 350px; /* Increased width */
+        }
+
+        h1 {
+            color: pink;
+            font-size: 2em;
+            margin-bottom: 40px;
+        }
+        p{
+            font-weight: bold;
+            color:pink
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            background-color: pink;
+            width: 120px; /* Set width for buttons */
+        }
+
+        .yes {
+            background-color: pink;
+            color: white;
+        }
+
+        .yes:hover {
+            background-color: hotpink;
+        }
+
+        .no {
+            background-color: #ccc;
+            color: black;
+        }
+
+        .no:hover {
+            background-color: #999;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #888;
+            width: 430px;
+            height: auto; /* Adjust height based on content */
+            border-radius: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            font-size: 23px;
+        }
+        .modal-content button:hover {
+    background-color: hotpink;
+}
+
+        img {
+            width: 200px; /* Adjust size */
+            height: auto;
+            margin-bottom: 15px; /* Space between image and text */
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="please.gif" alt="crying GIF" width="100%" />
+        <h1>ARE YOU FREE ON FEBRUARY 14?</h1>
+        <div class="buttons">
+            <button class="yes" onclick="window.location.href='4.html';">Yes</button>
+            <button class="no" onclick="window.location.href='5.html';">No</button>
+
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <img src="cry.gif" alt="crying GIF" width="100%" />
+            <p>IAN SAYS: OH NOOOO (╥﹏╥)</p>
+            <button onclick="window.location.href='index.html'">CLOSE</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to show modal
+        function showModal() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        // Function to close modal and redirect
+        function redirectToAnotherPage() {
+            window.location.href = 'index.html'; // Redirect to another page when CLOSE is clicked
+        }
+
+        // Close the modal when clicked outside of it
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('myModal')) {
+                document.getElementById('myModal').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
